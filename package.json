@@ -1,0 +1,28 @@
+{
+  "name": "whatsapp-support-operations",
+  "version": "1.0.0",
+  "description": "Privacy-aware customer support operations system with WhatsApp webhook support, human handoff, ticketing, and analytics.",
+  "type": "module",
+  "private": false,
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "test:coverage": "node --test --experimental-test-coverage",
+    "validate": "node scripts/validate-repository.js",
+    "check": "npm run validate && npm test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "whatsapp",
+    "customer-support",
+    "help-desk",
+    "webhooks",
+    "ticketing",
+    "human-handoff"
+  ],
+  "author": "Ramphal Harrilal",
+  "license": "MIT"
+}

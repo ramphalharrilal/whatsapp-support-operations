@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820" role="img" aria-labelledby="title desc">
+  <title id="title">RelayDesk support operations dashboard</title>
+  <desc id="desc">A dark-sidebar dashboard showing support metrics, ticket queue, conversations, and a WhatsApp-style simulator.</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#071827" flood-opacity="0.08"/>
+    </filter>
+    <style>
+      .font { font-family: Inter, Arial, sans-serif; }
+      .label { fill: #698095; font-size: 12px; }
+      .eyebrow { fill: #147a56; font-size: 10px; font-weight: 800; letter-spacing: 1.4px; }
+      .heading { fill: #071827; font-size: 28px; font-weight: 800; }
+      .section { fill: #071827; font-size: 16px; font-weight: 800; }
+      .metric { fill: #071827; font-size: 28px; font-weight: 800; }
+      .small { fill: #698095; font-size: 10px; }
+      .tablehead { fill: #698095; font-size: 9px; font-weight: 700; letter-spacing: .6px; }
+      .cell { fill: #33485d; font-size: 11px; }
+      .strong { fill: #071827; font-size: 11px; font-weight: 800; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="820" fill="#f4f7f8"/>
+  <rect width="238" height="820" fill="#071827"/>
+  <circle cx="36" cy="48" r="19" fill="#198965"/>
+  <text x="36" y="55" text-anchor="middle" class="font" fill="#ffffff" font-size="19" font-weight="800">R</text>
+  <text x="67" y="46" class="font" fill="#ffffff" font-size="15" font-weight="800">RelayDesk</text>
+  <text x="67" y="62" class="font" fill="#9eb1c1" font-size="9">Support operations</text>
+
+  <rect x="18" y="117" width="202" height="40" rx="8" fill="#ffffff" opacity=".09"/>
+  <rect x="18" y="117" width="3" height="40" rx="2" fill="#198965"/>
+  <text x="38" y="142" class="font" fill="#ffffff" font-size="12">◫  Operations</text>
+  <text x="38" y="190" class="font" fill="#b6c4d0" font-size="12">◌  Conversations</text>
+  <text x="38" y="232" class="font" fill="#b6c4d0" font-size="12">◇  Ticket queue</text>
+  <text x="38" y="274" class="font" fill="#b6c4d0" font-size="12">⌾  Privacy controls</text>
+
+  <rect x="18" y="668" width="202" height="63" rx="9" fill="#ffffff" opacity=".05" stroke="#ffffff" stroke-opacity=".1"/>
+  <circle cx="38" cy="698" r="5" fill="#3dcf91"/>
+  <text x="53" y="696" class="font" fill="#ffffff" font-size="10" font-weight="700">Demo channel active</text>
+  <text x="53" y="712" class="font" fill="#9eb1c1" font-size="8">No Meta credentials required</text>
+  <circle cx="38" cy="775" r="16" fill="#d7e8e0"/>
+  <text x="38" y="779" text-anchor="middle" class="font" fill="#071827" font-size="9" font-weight="800">RH</text>
+  <text x="62" y="772" class="font" fill="#ffffff" font-size="10" font-weight="700">Ramphal Harrilal</text>
+  <text x="62" y="788" class="font" fill="#9eb1c1" font-size="8">Portfolio environment</text>
+
+  <g transform="translate(272,34)" class="font">
+    <text x="0" y="11" class="eyebrow">CHANNEL: WHATSAPP BUSINESS</text>
+    <text x="0" y="47" class="heading">Support Operations</text>
+    <text x="0" y="70" class="label">Monitor conversations, route risk, and move customers to the right human.</text>
+    <rect x="979" y="13" width="115" height="34" rx="7" fill="#ffffff" stroke="#c8d3dc"/>
+    <text x="1037" y="34" text-anchor="middle" fill="#12324d" font-size="10" font-weight="700">Refresh data</text>
+
+    <g transform="translate(0,105)" filter="url(#shadow)">
+      <rect width="258" height="112" rx="10" fill="#ffffff" stroke="#dce4ea"/>
+      <text x="18" y="26" class="label">Total conversations</text>
+      <text x="18" y="67" class="metric">4</text>
+      <text x="18" y="91" class="small">Across bot and agent states</text>
+    </g>
+    <g transform="translate(272,105)" filter="url(#shadow)">
+      <rect width="258" height="112" rx="10" fill="#ffffff" stroke="#dce4ea"/>
+      <text x="18" y="26" class="label">Waiting for agent</text>
+      <text x="18" y="67" class="metric">2</text>
+      <text x="18" y="91" class="small">Human response required</text>
+    </g>
+    <g transform="translate(544,105)" filter="url(#shadow)">
+      <rect width="258" height="112" rx="10" fill="#ffffff" stroke="#dce4ea"/>
+      <text x="18" y="26" class="label">Open tickets</text>
+      <text x="18" y="67" class="metric">3</text>
+      <text x="18" y="91" class="small">Prioritized support work</text>
+    </g>
+    <g transform="translate(816,105)" filter="url(#shadow)">
+      <rect width="278" height="112" rx="10" fill="#147a56"/>
+      <text x="18" y="26" fill="#cce9dc" font-size="12">Bot contained</text>
+      <text x="18" y="67" fill="#ffffff" font-size="28" font-weight="800">1</text>
+      <text x="18" y="91" fill="#cce9dc" font-size="10">Resolved without a ticket</text>
+    </g>
+
+    <g transform="translate(0,235)" filter="url(#shadow)">
+      <rect width="1094" height="138" rx="11" fill="#ffffff" stroke="#dce4ea"/>
+      <text x="18" y="25" class="eyebrow">ACTION REQUIRED</text>
+      <text x="18" y="50" class="section">Ticket queue</text>
+      <rect x="1012" y="20" width="63" height="24" rx="12" fill="#edf2f5"/>
+      <text x="1044" y="36" text-anchor="middle" fill="#33485d" font-size="9" font-weight="700">3 open</text>
+
+      <g transform="translate(18,68)">
+        <rect width="337" height="52" rx="7" fill="#fbfcfd" stroke="#dce4ea"/>
+        <rect x="11" y="12" width="29" height="25" rx="5" fill="#fde8e9"/>
+        <text x="25" y="29" text-anchor="middle" fill="#a33a43" font-size="9" font-weight="800">P2</text>
+        <text x="50" y="22" class="strong">Potential security concern</text>
+        <text x="50" y="39" class="small">Created moments ago</text>
+        <rect x="276" y="12" width="49" height="25" rx="6" fill="#def5e9" stroke="#abd6c1"/>
+        <text x="300" y="28" text-anchor="middle" fill="#147a56" font-size="8" font-weight="800">Accept</text>
+      </g>
+      <g transform="translate(368,68)">
+        <rect width="337" height="52" rx="7" fill="#fbfcfd" stroke="#dce4ea"/>
+        <rect x="11" y="12" width="29" height="25" rx="5" fill="#fff2c7"/>
+        <text x="25" y="29" text-anchor="middle" fill="#946200" font-size="9" font-weight="800">P3</text>
+        <text x="50" y="22" class="strong">Repeated request not matched</text>
+        <text x="50" y="39" class="small">Waiting for an agent</text>
+        <rect x="276" y="12" width="49" height="25" rx="6" fill="#def5e9" stroke="#abd6c1"/>
+        <text x="300" y="28" text-anchor="middle" fill="#147a56" font-size="8" font-weight="800">Accept</text>
+      </g>
+      <g transform="translate(718,68)">
+        <rect width="358" height="52" rx="7" fill="#fbfcfd" stroke="#dce4ea"/>
+        <rect x="11" y="12" width="29" height="25" rx="5" fill="#fff2c7"/>
+        <text x="25" y="29" text-anchor="middle" fill="#946200" font-size="9" font-weight="800">P3</text>
+        <text x="50" y="22" class="strong">Customer requested an agent</text>
+        <text x="50" y="39" class="small">Assigned to Harry</text>
+        <rect x="296" y="12" width="49" height="25" rx="6" fill="#edf2f5"/>
+        <text x="320" y="28" text-anchor="middle" fill="#698095" font-size="8" font-weight="800">Assigned</text>
+      </g>
+    </g>
+
+    <g transform="translate(0,391)" filter="url(#shadow)">
+      <rect width="720" height="286" rx="11" fill="#ffffff" stroke="#dce4ea"/>
+      <text x="18" y="26" class="eyebrow">LIVE WORK</text>
+      <text x="18" y="51" class="section">Recent conversations</text>
+      <rect x="18" y="68" width="684" height="31" fill="#f8fafb"/>
+      <text x="31" y="88" class="tablehead">CUSTOMER</text>
+      <text x="169" y="88" class="tablehead">LATEST MESSAGE</text>
+      <text x="486" y="88" class="tablehead">STATE</text>
+      <text x="619" y="88" class="tablehead">UPDATED</text>
+
+      <text x="31" y="125" class="strong">Priya</text>
+      <text x="169" y="125" class="cell">For your security, I removed sensitive details...</text>
+      <rect x="486" y="109" width="104" height="23" rx="11" fill="#fff2c7"/>
+      <text x="538" y="124" text-anchor="middle" fill="#946200" font-size="8" font-weight="700">Waiting for agent</text>
+      <text x="619" y="125" class="cell">Aug 17, 2:14 PM</text>
+      <line x1="18" y1="143" x2="702" y2="143" stroke="#edf2f5"/>
+
+      <text x="31" y="171" class="strong">Miguel</text>
+      <text x="169" y="171" class="cell">I’m reviewing the return request now...</text>
+      <rect x="486" y="155" width="91" height="23" rx="11" fill="#def5e9"/>
+      <text x="531" y="170" text-anchor="middle" fill="#147a56" font-size="8" font-weight="700">Agent active</text>
+      <text x="619" y="171" class="cell">Aug 17, 2:11 PM</text>
+      <line x1="18" y1="189" x2="702" y2="189" stroke="#edf2f5"/>
+
+      <text x="31" y="217" class="strong">Jordan</text>
+      <text x="169" y="217" class="cell">I do not want to guess. I created a ticket...</text>
+      <rect x="486" y="201" width="104" height="23" rx="11" fill="#fff2c7"/>
+      <text x="538" y="216" text-anchor="middle" fill="#946200" font-size="8" font-weight="700">Waiting for agent</text>
+      <text x="619" y="217" class="cell">Aug 17, 2:08 PM</text>
+      <line x1="18" y1="235" x2="702" y2="235" stroke="#edf2f5"/>
+
+      <text x="31" y="263" class="strong">Asha</text>
+      <text x="169" y="263" class="cell">Our demo support hours are Monday through Friday...</text>
+      <rect x="486" y="247" width="82" height="23" rx="11" fill="#edf2f5"/>
+      <text x="527" y="262" text-anchor="middle" fill="#33485d" font-size="8" font-weight="700">Bot active</text>
+      <text x="619" y="263" class="cell">Aug 17, 2:05 PM</text>
+    </g>
+
+    <g transform="translate(738,391)" filter="url(#shadow)">
+      <rect width="356" height="286" rx="13" fill="#ffffff" stroke="#dce4ea"/>
+      <rect width="356" height="56" rx="13" fill="#147a56"/>
+      <rect y="43" width="356" height="13" fill="#147a56"/>
+      <circle cx="29" cy="28" r="16" fill="#ffffff"/>
+      <text x="29" y="33" text-anchor="middle" fill="#147a56" font-size="13" font-weight="800">R</text>
+      <text x="54" y="26" fill="#ffffff" font-size="11" font-weight="800">RelayDesk Support</text>
+      <circle cx="57" cy="39" r="3" fill="#ffffff"/>
+      <text x="65" y="42" fill="#cce9dc" font-size="8">Demo simulator</text>
+      <rect x="18" y="76" width="281" height="34" rx="9" fill="#ffffff"/>
+      <text x="30" y="97" class="cell">What time do you close today?</text>
+      <rect x="55" y="124" width="283" height="64" rx="9" fill="#d8f2e5"/>
+      <text x="68" y="146" fill="#0d503b" font-size="10">Our demo support hours are Monday</text>
+      <text x="68" y="163" fill="#0d503b" font-size="10">through Friday, 8:00 AM to 5:00 PM.</text>
+      <rect x="14" y="235" width="328" height="38" rx="9" fill="#f4f7f8" stroke="#dce4ea"/>
+      <text x="28" y="258" fill="#698095" font-size="9">Type a customer message</text>
+      <circle cx="318" cy="254" r="14" fill="#147a56"/>
+      <text x="318" y="258" text-anchor="middle" fill="#ffffff" font-size="12">➤</text>
+    </g>
+
+    <rect x="0" y="695" width="1094" height="58" rx="9" fill="#eaf7f1" stroke="#b8dccb"/>
+    <circle cx="27" cy="724" r="13" fill="#147a56"/>
+    <text x="27" y="728" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="800">✓</text>
+    <text x="50" y="718" fill="#185d46" font-size="11" font-weight="800">Privacy boundary</text>
+    <text x="50" y="736" fill="#185d46" font-size="9">Sensitive patterns are redacted before storage and webhook identities are pseudonymized.</text>
+  </g>
+</svg>
