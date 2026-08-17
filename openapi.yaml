@@ -1,0 +1,323 @@
+openapi: 3.1.0
+info:
+  title: RelayDesk Support Operations API
+  version: 1.0.0
+  description: >-
+    Portfolio API for privacy-aware WhatsApp support intake, ticket handoff,
+    agent messaging, resolution, and dashboard metrics.
+servers:
+  - url: http://localhost:3000
+    description: Local demo
+paths:
+  /api/health:
+    get:
+      summary: Read service health and operating mode
+      responses:
+        "200":
+          description: Service is available
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Health"
+  /api/dashboard:
+    get:
+      summary: Read support metrics and current work
+      responses:
+        "200":
+          description: Operational dashboard snapshot
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dashboard"
+  /api/conversations/{conversationId}:
+    get:
+      summary: Read a conversation
+      parameters:
+        - $ref: "#/components/parameters/ConversationId"
+      responses:
+        "200":
+          description: Conversation with redacted message history
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Conversation"
+        "404":
+          $ref: "#/components/responses/Error"
+  /api/simulate/inbound:
+    post:
+      summary: Process a demo customer message
+      description: Available only while DEMO_MODE is true.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [text]
+              properties:
+                customerId:
+                  type: string
+                  example: browser_demo_customer
+                customerName:
+                  type: string
+                  maxLength: 60
+                  example: Demo Customer
+                text:
+                  type: string
+                  maxLength: 1000
+                  example: I need an agent
+      responses:
+        "201":
+          description: Message processed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProcessingResult"
+        "400":
+          $ref: "#/components/responses/Error"
+  /api/tickets/{ticketId}/assign:
+    post:
+      summary: Assign an open ticket to an agent
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [agentName]
+              properties:
+                agentName:
+                  type: string
+                  example: Harry
+      responses:
+        "200":
+          description: Ticket assigned and conversation moved to agent-active state
+        "409":
+          $ref: "#/components/responses/Error"
+  /api/conversations/{conversationId}/agent-message:
+    post:
+      summary: Send a reply from the assigned agent
+      parameters:
+        - $ref: "#/components/parameters/ConversationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [agentName, text]
+              properties:
+                agentName:
+                  type: string
+                text:
+                  type: string
+                  maxLength: 1000
+      responses:
+        "201":
+          description: Reply stored and returned to the channel boundary
+        "409":
+          $ref: "#/components/responses/Error"
+  /api/conversations/{conversationId}/resolve:
+    post:
+      summary: Resolve the conversation and linked ticket
+      parameters:
+        - $ref: "#/components/parameters/ConversationId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                agentName:
+                  type: string
+                  example: Harry
+      responses:
+        "200":
+          description: Conversation resolved
+  /webhooks/whatsapp:
+    get:
+      summary: Complete the Meta webhook subscription challenge
+      parameters:
+        - name: hub.mode
+          in: query
+          schema:
+            type: string
+        - name: hub.verify_token
+          in: query
+          schema:
+            type: string
+        - name: hub.challenge
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Challenge returned as text
+        "403":
+          $ref: "#/components/responses/Error"
+    post:
+      summary: Receive a signed WhatsApp webhook payload
+      parameters:
+        - name: X-Hub-Signature-256
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Supported messages accepted
+        "401":
+          $ref: "#/components/responses/Error"
+        "413":
+          $ref: "#/components/responses/Error"
+components:
+  parameters:
+    ConversationId:
+      name: conversationId
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    Error:
+      description: Request could not be completed
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [error]
+            properties:
+              error:
+                type: string
+  schemas:
+    Health:
+      type: object
+      required: [status, service, mode, timestamp]
+      properties:
+        status:
+          const: ok
+        service:
+          type: string
+        mode:
+          enum: [demo, webhook]
+        timestamp:
+          type: string
+          format: date-time
+    Message:
+      type: object
+      required: [id, direction, sender, text, timestamp]
+      properties:
+        id:
+          type: string
+        direction:
+          enum: [inbound, outbound]
+        sender:
+          type: string
+        text:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        sourceMessageId:
+          type: [string, "null"]
+    Conversation:
+      type: object
+      required: [id, customerId, customerName, state, messages, createdAt, updatedAt]
+      properties:
+        id:
+          type: string
+        customerId:
+          type: string
+          description: Pseudonymous channel identity
+        customerName:
+          type: string
+        state:
+          enum: [BOT_ACTIVE, WAITING_FOR_AGENT, AGENT_ACTIVE, RESOLVED]
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/Message"
+        ticketId:
+          type: [string, "null"]
+        assignedAgent:
+          type: [string, "null"]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Ticket:
+      type: object
+      required: [id, conversationId, priority, reason, status, createdAt]
+      properties:
+        id:
+          type: string
+        conversationId:
+          type: string
+        priority:
+          enum: [P2, P3]
+        reason:
+          type: string
+        status:
+          enum: [OPEN, ASSIGNED, RESOLVED]
+        assignedAgent:
+          type: [string, "null"]
+        createdAt:
+          type: string
+          format: date-time
+    Dashboard:
+      type: object
+      required: [metrics, conversations, tickets, auditEvents]
+      properties:
+        metrics:
+          type: object
+          properties:
+            totalConversations:
+              type: integer
+            waitingForAgent:
+              type: integer
+            openTickets:
+              type: integer
+            botContained:
+              type: integer
+            averageFirstResponseMs:
+              type: integer
+        conversations:
+          type: array
+          items:
+            type: object
+        tickets:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ticket"
+        auditEvents:
+          type: array
+          items:
+            type: object
+    ProcessingResult:
+      type: object
+      required: [conversation, outboundMessage]
+      properties:
+        conversation:
+          $ref: "#/components/schemas/Conversation"
+        outboundMessage:
+          $ref: "#/components/schemas/Message"
+        ticket:
+          oneOf:
+            - $ref: "#/components/schemas/Ticket"
+            - type: "null"
+        intent:
+          type: [string, "null"]

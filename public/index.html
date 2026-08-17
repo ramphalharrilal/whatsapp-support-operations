@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="RelayDesk privacy-aware WhatsApp customer support operations dashboard."
+    >
+    <title>RelayDesk | Support Operations</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" type="module"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark" aria-hidden="true">R</div>
+          <div>
+            <strong>RelayDesk</strong>
+            <span>Support operations</span>
+          </div>
+        </div>
+
+        <nav aria-label="Primary navigation">
+          <a class="nav-link active" href="#operations">
+            <span aria-hidden="true">◫</span> Operations
+          </a>
+          <a class="nav-link" href="#conversations">
+            <span aria-hidden="true">◌</span> Conversations
+          </a>
+          <a class="nav-link" href="#tickets">
+            <span aria-hidden="true">◇</span> Ticket queue
+          </a>
+          <a class="nav-link" href="#privacy">
+            <span aria-hidden="true">⌾</span> Privacy controls
+          </a>
+        </nav>
+
+        <div class="channel-card">
+          <span class="status-dot"></span>
+          <div>
+            <strong>Demo channel active</strong>
+            <span>No Meta credentials required</span>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <span class="avatar">RH</span>
+          <div>
+            <strong>Ramphal Harrilal</strong>
+            <span>Portfolio environment</span>
+          </div>
+        </div>
+      </aside>
+
+      <main id="operations" class="main-content">
+        <header class="page-header">
+          <div>
+            <p class="eyebrow">CHANNEL: WHATSAPP BUSINESS</p>
+            <h1>Support Operations</h1>
+            <p>Monitor conversations, route risk, and move customers to the right human.</p>
+          </div>
+          <button id="refresh-button" class="secondary-button" type="button">Refresh data</button>
+        </header>
+
+        <section class="metric-grid" aria-label="Support metrics">
+          <article class="metric-card">
+            <span>Total conversations</span>
+            <strong id="metric-conversations">0</strong>
+            <small>Across bot and agent states</small>
+          </article>
+          <article class="metric-card">
+            <span>Waiting for agent</span>
+            <strong id="metric-waiting">0</strong>
+            <small>Human response required</small>
+          </article>
+          <article class="metric-card">
+            <span>Open tickets</span>
+            <strong id="metric-tickets">0</strong>
+            <small>Prioritized support work</small>
+          </article>
+          <article class="metric-card accent-card">
+            <span>Bot contained</span>
+            <strong id="metric-contained">0</strong>
+            <small>Resolved without a ticket</small>
+          </article>
+        </section>
+
+        <section id="tickets" class="panel ticket-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">ACTION REQUIRED</p>
+              <h2>Ticket queue</h2>
+            </div>
+            <span id="queue-count" class="count-pill">0 open</span>
+          </div>
+          <div id="ticket-list" class="ticket-list"></div>
+        </section>
+
+        <section class="workspace-grid">
+          <article id="conversations" class="panel conversations-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">LIVE WORK</p>
+                <h2>Recent conversations</h2>
+              </div>
+              <span class="muted">Select a row to inspect</span>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Latest message</th>
+                    <th>State</th>
+                    <th>Updated</th>
+                  </tr>
+                </thead>
+                <tbody id="conversation-table"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="phone-panel" aria-labelledby="simulator-title">
+            <div class="phone-header">
+              <div class="phone-avatar">R</div>
+              <div>
+                <h2 id="simulator-title">RelayDesk Support</h2>
+                <span><span class="status-dot"></span> Demo simulator</span>
+              </div>
+            </div>
+            <div id="simulator-messages" class="chat-area" aria-live="polite">
+              <div class="chat-notice">
+                Messages are processed by the same engine used by the webhook route.
+              </div>
+              <div class="message-bubble inbound">
+                Try “What time do you close?”, “agent”, or a technical-support question.
+              </div>
+            </div>
+            <form id="simulator-form" class="chat-form">
+              <label class="sr-only" for="simulator-name">Customer name</label>
+              <input id="simulator-name" name="customerName" value="Demo Customer" maxlength="60">
+              <div class="message-input-row">
+                <label class="sr-only" for="simulator-input">Message</label>
+                <input
+                  id="simulator-input"
+                  name="text"
+                  placeholder="Type a customer message"
+                  maxlength="1000"
+                  required
+                >
+                <button type="submit" aria-label="Send message">➤</button>
+              </div>
+            </form>
+          </article>
+        </section>
+
+        <section id="privacy" class="privacy-banner">
+          <div class="privacy-icon" aria-hidden="true">✓</div>
+          <div>
+            <strong>Privacy boundary</strong>
+            <p>
+              Sensitive patterns are redacted before storage. The demo never requests passwords,
+              verification codes, or full card numbers, and webhook identities are pseudonymized.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="conversation-dialog">
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow">CONVERSATION DETAIL</p>
+          <h2 id="dialog-title">Customer</h2>
+          <span id="dialog-state" class="status-badge"></span>
+        </div>
+        <button id="dialog-close" class="icon-button" type="button" aria-label="Close">×</button>
+      </div>
+      <div id="dialog-messages" class="dialog-messages"></div>
+      <form id="agent-reply-form" class="agent-reply-form">
+        <input id="agent-name" value="Harry" aria-label="Agent name" maxlength="60">
+        <input id="agent-message" placeholder="Reply as the assigned agent" maxlength="1000">
+        <button class="primary-button" type="submit">Send reply</button>
+        <button id="resolve-button" class="secondary-button" type="button">Resolve</button>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
