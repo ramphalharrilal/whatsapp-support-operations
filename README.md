@@ -4,9 +4,11 @@
 [![Node.js 22](https://img.shields.io/badge/Node.js-22-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A privacy-aware customer-support operations system that accepts WhatsApp webhook events, answers only from approved knowledge, creates prioritized tickets, and moves customers into a controlled human handoff.
+## About
 
-This is a working portfolio edition with a browser simulator and synthetic data. It requires no Meta credentials in demo mode and does not claim to send production WhatsApp messages without an approved Business account and outbound provider adapter.
+RelayDesk is a privacy-aware customer-support operations system that accepts WhatsApp webhook events, answers only from approved knowledge, creates prioritized tickets, and moves customers into a controlled human handoff.
+
+It is a working portfolio edition with a browser simulator and synthetic data. Demo mode requires no Meta credentials. Production WhatsApp delivery would require an approved Business account and a dedicated outbound provider adapter.
 
 ![RelayDesk support operations dashboard](docs/relaydesk-dashboard.svg)
 
@@ -65,7 +67,9 @@ cd whatsapp-support-operations
 node src/server.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+After the server prints `RelayDesk listening on http://localhost:3000`, open `http://localhost:3000` in a browser on that same computer.
+
+> `localhost` is a local development address, not a public website. The link will not work from GitHub unless you first clone the repository and start the server locally.
 
 Try these simulator messages:
 
